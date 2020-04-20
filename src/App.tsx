@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { addTask, removeTask } from './tasklist/actions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Grid } from 'semantic-ui-react';
+import NewTask from './NewTask';
+
+
+export interface IAppProps {
+  addTask: typeof addTask, 
+  removeTask: typeof removeTask,
+  userId: number,
+  selectedTask: string
 }
 
-export default App;
+export default class App extends React.Component<IAppProps> {
+  public render() {
+    return (
+      <Grid centered>
+        <Grid.Row>
+          <h1>To Do Task List</h1>
+        </Grid.Row>
+        <Grid.Row>
+          <NewTask />
+        </Grid.Row>
+      </Grid>
+    );
+  }
+}
